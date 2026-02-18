@@ -103,24 +103,6 @@ export function HeroSection(): React.ReactElement {
             </div>
           </div>
         </div>
-
-        {/* ─── Mobile: Clean single-product showcase ──────────── */}
-        <div className="relative flex items-center justify-center md:hidden">
-          {/* Background circle */}
-          <div className="absolute h-48 w-48 rounded-full bg-gradient-to-br from-[#f5efe6] to-[#ede4d6]" />
-          <div className="animate-ring-pulse absolute h-56 w-56 rounded-full border border-heritage-gold/15" />
-
-          {/* Single hero product */}
-          <div className="animate-hero-enter animate-hero-levitate relative z-10">
-            <Image
-              src="/images/products/olive-oil/extra-virgin-olive-oil-500ml.jpeg"
-              alt="Extra Virgin Olive Oil"
-              width={160}
-              height={160}
-              className="h-40 w-auto object-contain drop-shadow-[0_6px_20px_rgba(0,0,0,0.1)]"
-            />
-          </div>
-        </div>
       </div>
     </section>
   );
