@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Bostany design system mapped to shadcn/ui variables */
+    --background: 30 25% 94%; /* cream #F5F0EA */
+    --foreground: 0 0% 18%; /* charcoal #2D2D2D */
+
+    --card: 40 20% 97%; /* warm-white #FAFAF7 */
+    --card-foreground: 0 0% 18%;
+
+    --popover: 40 20% 97%;
+    --popover-foreground: 0 0% 18%;
+
+    --primary: 358 73% 44%; /* bostany-red #C41E24 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 54% 50%; /* heritage-gold #C5993A */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 18% 90%; /* light cream */
+    --muted-foreground: 0 0% 42%; /* slate #6B6B6B */
+
+    --accent: 38 54% 50%; /* heritage-gold */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 358 73% 44%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 17% 88%; /* light-border #E8E2DA */
+    --input: 30 17% 88%;
+    --ring: 358 73% 44%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 30 25% 94%;
+
+    --card: 0 0% 15%;
+    --card-foreground: 30 25% 94%;
+
+    --popover: 0 0% 15%;
+    --popover-foreground: 30 25% 94%;
+
+    --primary: 358 73% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 54% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 38 54% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 358 73% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cream font-body text-charcoal antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+/* ─── Homepage Animations ─────────────────────────────────────── */
+
+/* Hero — subtle levitate (no rotation, slow, elegant) */
+@keyframes hero-levitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes hero-levitate-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Hero — slow golden ring pulse */
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.02); }
+}
+
+/* Hero — gentle fade-in entrance on load */
+@keyframes hero-product-enter {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-hero-levitate {
+  animation: hero-levitate 6s ease-in-out infinite;
+}
+
+.animate-hero-levitate-slow {
+  animation: hero-levitate-slow 7s ease-in-out infinite 0.5s;
+}
+
+.animate-ring-pulse {
+  animation: ring-pulse 8s ease-in-out infinite;
+}
+
+.animate-hero-enter {
+  animation: hero-product-enter 0.8s ease-out forwards;
+}
+
+.animate-hero-enter-delay-1 {
+  animation: hero-product-enter 0.8s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-hero-enter-delay-2 {
+  animation: hero-product-enter 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Ticker scroll */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+/* Scroll-triggered fade-in-up */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Hero background texture */
+.hero-texture {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(197,153,58,0.03) 20px,
+      rgba(197,153,58,0.03) 40px
+    );
+}
+
+/* Retail partner logo grayscale */
+.partner-logo {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.partner-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ─── Shop Page Animations ────────────────────────────────────── */
+
+/* Product card stagger entrance */
+@keyframes product-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-grid-item {
+  animation: product-enter 0.35s ease-out forwards;
+  opacity: 0;
+}
+
+/* Checkbox custom styling */
+.filter-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #E8E2DA;
+  border-radius: 4px;
+  background: #FAFAF7;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.filter-checkbox:checked {
+  background: #C41E24;
+  border-color: #C41E24;
+}
+
+.filter-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────────── */
+
+/* Thin, warm-toned scrollbar that matches the Bostany design system */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E8E2DA transparent;
+}
+
+*:hover {
+  scrollbar-color: #C5993A40 transparent;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E8E2DA;
+  border-radius: 100px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C5993A80;
+}
+
+/* Hide scrollbar until hover for sidebar-style panels */
+.scrollbar-on-hover {
+  scrollbar-width: none;
+}
+
+.scrollbar-on-hover::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-on-hover::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 100px;
+}
+
+.scrollbar-on-hover:hover::-webkit-scrollbar-thumb {
+  background: #E8E2DA;
+}
+
+.scrollbar-on-hover:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #E8E2DA transparent;
+}
+
+.scrollbar-on-hover:hover::-webkit-scrollbar-thumb:hover {
+  background: #C5993A80;
+}
+
+/* ─── Cart Animations ────────────────────────────────────────── */
+
+@keyframes cart-item-fade-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+    max-height: 200px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  50% {
+    opacity: 0;
+    transform: translateX(-20px);
+    max-height: 200px;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+  }
+}
+
+.cart-item-row {
+  overflow: hidden;
+}
+
+.cart-item-removing {
+  animation: cart-item-fade-out 0.3s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ─── Confetti Animation (Success Page) ──────────────────────── */
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-particle {
+  animation: confetti-fall 3s ease-in forwards;
+}
+
+/* ─── Loading Shimmer ──────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
