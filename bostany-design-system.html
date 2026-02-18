@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bostany — Design System Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C41E24;
+    --red-hover: #A31920;
+    --gold: #C5993A;
+    --dark-gold: #9B7730;
+    --cream: #F5F0EA;
+    --warm-white: #FAFAF7;
+    --charcoal: #2D2D2D;
+    --slate: #6B6B6B;
+    --light-border: #E8E2DA;
+    --olive-green: #4A5D23;
+    --coffee-brown: #4A2C1A;
+    --cheese-gold: #E8A825;
+    --syrup-blue: #1B3A7B;
+    --bean-red: #D4382C;
+    --corn-green: #2D8B47;
+    --juice-orange: #E87D1E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .ds-header {
+    background: var(--charcoal);
+    padding: 48px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(197,153,58,0.03) 20px,
+      rgba(197,153,58,0.03) 40px
+    );
+  }
+  .ds-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--warm-white);
+    position: relative;
+  }
+  .ds-header .badge {
+    display: inline-block;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+  }
+  .ds-header p {
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    margin-top: 12px;
+    position: relative;
+  }
+
+  /* Section */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--light-border);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--slate);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  /* Color Palette */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .color-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .color-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+  .color-swatch {
+    height: 80px;
+    width: 100%;
+  }
+  .color-info {
+    padding: 12px;
+  }
+  .color-name { font-weight: 600; font-size: 13px; }
+  .color-hex { color: var(--slate); font-size: 12px; font-family: monospace; }
+  .color-use { color: var(--slate); font-size: 11px; margin-top: 4px; }
+  .copied-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--charcoal);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  .copied-toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Typography */
+  .type-specimen {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .type-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .type-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .type-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--slate);
+    max-width: 600px;
+  }
+  .type-arabic {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+  }
+  .type-arabic .type-display {
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 800;
+  }
+  .type-arabic .type-body {
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  /* Component Previews */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Buttons */
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--red-hover); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--charcoal);
+    border: 1.5px solid var(--charcoal);
+  }
+  .btn-secondary:hover { background: var(--charcoal); color: white; }
+  .btn-gold {
+    background: var(--gold);
+    color: white;
+  }
+  .btn-gold:hover { background: var(--dark-gold); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--red);
+    padding: 12px 16px;
+  }
+  .btn-ghost:hover { background: rgba(196,30,36,0.06); }
+  .btn-sm { padding: 8px 16px; font-size: 13px; }
+
+  /* Product Card */
+  .product-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    position: relative;
+  }
+  .product-card:hover {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+  }
+  .product-img {
+    background: linear-gradient(135deg, #faf8f5 0%, #f0ebe3 100%);
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+  .product-img .emoji-product {
+    font-size: 72px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+  }
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--gold);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .product-wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .product-wishlist:hover { background: #FEE; transform: scale(1.1); }
+  .product-info {
+    padding: 16px 18px 18px;
+  }
+  .product-brand {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    background: rgba(197,153,58,0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .product-name-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    color: var(--slate);
+    direction: rtl;
+    margin-bottom: 8px;
+  }
+  .product-size {
+    font-size: 12px;
+    color: var(--slate);
+    margin-bottom: 12px;
+  }
+  .product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .product-price span {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--slate);
+  }
+  .add-to-cart {
+    background: var(--red);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .add-to-cart:hover { background: var(--red-hover); transform: scale(1.05); }
+
+  /* Category Card */
+  .category-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .category-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .category-card:hover::after { transform: scaleX(1); }
+  .category-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .category-emoji { font-size: 40px; margin-bottom: 12px; display: block; }
+  .category-name { font-weight: 600; font-size: 14px; }
+  .category-name-ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    color: var(--slate);
+    direction: rtl;
+    margin-top: 2px;
+  }
+  .category-count { font-size: 11px; color: var(--slate); margin-top: 4px; }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 14px;
+  }
+
+  /* Heritage Badge */
+  .heritage-badge {
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(197,153,58,0.04);
+    margin: 0 auto 24px;
+  }
+  .heritage-badge .est {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .heritage-badge .year {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .heritage-badge .tag {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--dark-gold);
+    margin-top: 2px;
+  }
+
+  /* Trust Badges Row */
+  .trust-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 200px;
+  }
+  .trust-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .trust-badge .trust-title { font-weight: 600; font-size: 13px; }
+  .trust-badge .trust-desc { font-size: 11px; color: var(--slate); }
+
+  /* Payment Methods Preview */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .payment-option {
+    background: white;
+    border: 2px solid var(--light-border);
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .payment-option:hover, .payment-option.selected {
+    border-color: var(--red);
+    box-shadow: 0 0 0 1px var(--red);
+  }
+  .payment-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--light-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .payment-option.selected .payment-radio {
+    border-color: var(--red);
+  }
+  .payment-option.selected .payment-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--red);
+    border-radius: 50%;
+  }
+  .payment-icon { font-size: 24px; }
+  .payment-label { font-weight: 600; font-size: 14px; }
+  .payment-desc { font-size: 11px; color: var(--slate); }
+
+  /* Spacing Showcase */
+  .spacing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .spacing-item {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .spacing-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .spacing-item code {
+    font-size: 12px;
+    color: var(--red);
+    background: rgba(196,30,36,0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .spacing-item p { font-size: 12px; color: var(--slate); margin-top: 4px; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ds-header h1 { font-size: 28px; }
+    .type-display { font-size: 32px; }
+    .component-grid { grid-template-columns: 1fr; }
+    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    .trust-row { flex-direction: column; }
+    .section { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="ds-header">
+  <div class="container">
+    <div class="badge">Design System v1.0</div>
+    <h1>Bostany بستاني</h1>
+    <p>E-Commerce Design System Reference — Est. 1900, Damietta</p>
+  </div>
+</header>
+
+<!-- Color Palette -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Color Palette</h2>
+    <p class="section-subtitle">Click any color to copy its hex value. Primary brand colors derived from the Bostany logo and packaging.</p>
+
+    <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:14px;font-weight:600;">Brand Primary</h3>
+    <div class="color-grid" style="margin-bottom:24px;">
+      <div class="color-card" onclick="copyColor('#C41E24')">
+        <div class="color-swatch" style="background:#C41E24;"></div>
+        <div class="color-info">
+          <div class="color-name">Bostany Red</div>
+          <div class="color-hex">#C41E24</div>
+          <div class="color-use">CTAs, logo, primary actions</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#C5993A')">
+        <div class="color-swatch" style="background:#C5993A;"></div>
+        <div class="color-info">
+          <div class="color-name">Heritage Gold</div>
+          <div class="color-hex">#C5993A</div>
+          <div class="color-use">Accents, badges, premium elements</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#9B7730')">
+        <div class="color-swatch" style="background:#9B7730;"></div>
+        <div class="color-info">
+          <div class="color-name">Deep Gold</div>
+          <div class="color-hex">#9B7730</div>
+          <div class="color-use">Hover states, depth</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#F5F0EA')">
+        <div class="color-swatch" style="background:#F5F0EA;border-bottom:1px solid #e8e2da;"></div>
+        <div class="color-info">
+          <div class="color-name">Warm Cream</div>
+          <div class="color-hex">#F5F0EA</div>
+          <div class="color-use">Page background</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#2D2D2D')">
+        <div class="color-swatch" style="background:#2D2D2D;"></div>
+        <div class="color-info">
+          <div class="color-name">Charcoal</div>
+          <div class="color-hex">#2D2D2D</div>
+          <div class="color-use">Primary text, headings</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#6B6B6B')">
+        <div class="color-swatch" style="background:#6B6B6B;"></div>
+        <div class="color-info">
+          <div class="color-name">Slate</div>
+          <div class="color-hex">#6B6B6B</div>
+          <div class="color-use">Secondary text, captions</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:14px;font-weight:600;">Category Accents</h3>
+    <div class="color-grid">
+      <div class="color-card" onclick="copyColor('#4A5D23')">
+        <div class="color-swatch" style="background:#4A5D23;"></div>
+        <div class="color-info">
+          <div class="color-name">Olive Green</div>
+          <div class="color-hex">#4A5D23</div>
+          <div class="color-use">Olive oil category</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#4A2C1A')">
+        <div class="color-swatch" style="background:#4A2C1A;"></div>
+        <div class="color-info">
+          <div class="color-name">Coffee Brown</div>
+          <div class="color-hex">#4A2C1A</div>
+          <div class="color-use">Coffee category</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#E8A825')">
+        <div class="color-swatch" style="background:#E8A825;"></div>
+        <div class="color-info">
+          <div class="color-name">Cheese Gold</div>
+          <div class="color-hex">#E8A825</div>
+          <div class="color-use">Dairy / cheese category</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#1B3A7B')">
+        <div class="color-swatch" style="background:#1B3A7B;"></div>
+        <div class="color-info">
+          <div class="color-name">Syrup Blue</div>
+          <div class="color-hex">#1B3A7B</div>
+          <div class="color-use">Manutti syrups</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#D4382C')">
+        <div class="color-swatch" style="background:#D4382C;"></div>
+        <div class="color-info">
+          <div class="color-name">Bean Red</div>
+          <div class="color-hex">#D4382C</div>
+          <div class="color-use">Canned goods</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#2D8B47')">
+        <div class="color-swatch" style="background:#2D8B47;"></div>
+        <div class="color-info">
+          <div class="color-name">Corn Green</div>
+          <div class="color-hex">#2D8B47</div>
+          <div class="color-use">Sweet corn / vegetables</div>
+        </div>
+      </div>
+      <div class="color-card" onclick="copyColor('#E87D1E')">
+        <div class="color-swatch" style="background:#E87D1E;"></div>
+        <div class="color-info">
+          <div class="color-name">Juice Orange</div>
+          <div class="color-hex">#E87D1E</div>
+          <div class="color-use">Juice category</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Typography -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Typography</h2>
+    <p class="section-subtitle">Bilingual type system: Playfair Display (EN) + Tajawal (AR) for headings, DM Sans + Tajawal for body</p>
+
+    <div class="type-specimen">
+      <div class="type-label">English — Display</div>
+      <div class="type-display">Quality Since 1900</div>
+      <div class="type-body">Playfair Display 700 — Used for hero headlines, section titles, product names. Brings editorial elegance and heritage gravitas.</div>
+    </div>
+
+    <div class="type-specimen type-arabic">
+      <div class="type-label" style="text-align:right;">Arabic — Display</div>
+      <div class="type-display">من بستان العيلة لبيتك</div>
+      <div class="type-body">Tajawal 800 — For Arabic headings and display text. Strong, modern Kufi-style that pairs well with the serif English.</div>
+    </div>
+
+    <div class="type-specimen">
+      <div class="type-label">English — Body</div>
+      <div class="type-body" style="font-size:16px;color:var(--charcoal);">
+        Founded in 1900 in Damietta by Abbas El Bostany, our company has grown from a small family business into a dynamic and diversified food company. We deliver quality products to homes across Egypt.
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--slate);">DM Sans 400, 16px/1.6 — Clean and highly readable for product descriptions and UI text.</div>
+    </div>
+
+    <div class="type-specimen type-arabic">
+      <div class="type-label" style="text-align:right;">Arabic — Body</div>
+      <div class="type-body" style="font-size:16px;color:var(--charcoal);font-family:'Tajawal',sans-serif;">
+        تأسست شركة البستاني عام ١٩٠٠ في دمياط على يد عباس البستاني. نقدم منتجات غذائية عالية الجودة للعائلات المصرية منذ أكثر من قرن.
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--slate);text-align:right;">Tajawal 400, 16px/1.8 — Excellent Arabic readability with generous line height.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Heritage Badge -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Heritage Element</h2>
+    <p class="section-subtitle">Signature brand element to use throughout the site — reinforces 125+ years of trust</p>
+    <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;justify-content:center;">
+      <div class="heritage-badge">
+        <span class="est">Established</span>
+        <span class="year">1900</span>
+        <span class="tag">Damietta, Egypt</span>
+      </div>
+      <div class="heritage-badge" style="border-color:var(--charcoal);background:var(--charcoal);">
+        <span class="est" style="color:var(--gold);">Since</span>
+        <span class="year" style="color:var(--warm-white);">1900</span>
+        <span class="tag" style="color:rgba(255,255,255,0.5);">بستاني</span>
+      </div>
+      <div class="heritage-badge" style="width:140px;height:140px;border-width:3px;">
+        <span class="est">Est.</span>
+        <span class="year" style="font-size:34px;">١٩٠٠</span>
+        <span class="tag">دمياط</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buttons -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Buttons</h2>
+    <p class="section-subtitle">All interactive states for the e-commerce platform</p>
+    <div class="btn-row" style="margin-bottom:16px;">
+      <button class="btn btn-primary">Add to Cart</button>
+      <button class="btn btn-primary btn-sm">أضف للسلة</button>
+      <button class="btn btn-secondary">View Details</button>
+      <button class="btn btn-gold">Place Order</button>
+      <button class="btn btn-ghost">Continue Shopping →</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" style="width:100%;max-width:360px;">Proceed to Checkout — EGP 485.00</button>
+    </div>
+  </div>
+</section>
+
+<!-- Product Card -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Product Card</h2>
+    <p class="section-subtitle">The core commerce component — optimized for bilingual display and quick actions</p>
+    <div class="component-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-badge">Bestseller</div>
+          <div class="product-wishlist">♡</div>
+          <div class="emoji-product">🫒</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">BOSTANY</div>
+          <div class="product-name">Extra Virgin Olive Oil</div>
+          <div class="product-name-ar">زيت زيتون بكر ممتاز</div>
+          <div class="product-size">500ml · Cold Pressed</div>
+          <div class="product-bottom">
+            <div class="product-price"><span>EGP</span> 185</div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,#fef9f0,#f5ebe0);">
+          <div class="product-wishlist">♡</div>
+          <div class="emoji-product">🐟</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">BOSTANY</div>
+          <div class="product-name">Spicy Tuna Chunks</div>
+          <div class="product-name-ar">قطع تونة حارة</div>
+          <div class="product-size">Standard Can · With Hot Chillies</div>
+          <div class="product-bottom">
+            <div class="product-price"><span>EGP</span> 42</div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,#f8f5f0,#ede5d8);">
+          <div class="product-badge" style="background:var(--corn-green);">New</div>
+          <div class="product-wishlist">♡</div>
+          <div class="emoji-product">☕</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand" style="color:var(--coffee-brown);background:rgba(74,44,26,0.08);">TOPVALUE</div>
+          <div class="product-name">Gold Instant Coffee</div>
+          <div class="product-name-ar">قهوة سريعة التحضير جولد</div>
+          <div class="product-size">200g · Premium Quality</div>
+          <div class="product-bottom">
+            <div class="product-price"><span>EGP</span> 89</div>
+            <button class="add-to-cart">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Category Cards -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-subtitle">Visual category navigation grid for homepage</p>
+    <div class="cat-grid">
+      <div class="category-card">
+        <span class="category-emoji">🐟</span>
+        <div class="category-name">Tuna</div>
+        <div class="category-name-ar">تونة</div>
+        <div class="category-count">2 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🫒</span>
+        <div class="category-name">Olive Oil</div>
+        <div class="category-name-ar">زيت زيتون</div>
+        <div class="category-count">4 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🌾</span>
+        <div class="category-name">Rice Bran Oil</div>
+        <div class="category-name-ar">زيت نخالة الأرز</div>
+        <div class="category-count">2 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🫘</span>
+        <div class="category-name">Canned Goods</div>
+        <div class="category-name-ar">معلبات</div>
+        <div class="category-count">2 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">☕</span>
+        <div class="category-name">Coffee</div>
+        <div class="category-name-ar">قهوة</div>
+        <div class="category-count">4 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🧀</span>
+        <div class="category-name">Cheese & Dairy</div>
+        <div class="category-name-ar">أجبان وألبان</div>
+        <div class="category-count">6 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🧃</span>
+        <div class="category-name">Juices</div>
+        <div class="category-name-ar">عصائر</div>
+        <div class="category-count">5 products</div>
+      </div>
+      <div class="category-card">
+        <span class="category-emoji">🍹</span>
+        <div class="category-name">Syrups</div>
+        <div class="category-name-ar">شراب</div>
+        <div class="category-count">8 products</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Badges -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Trust Badges</h2>
+    <p class="section-subtitle">Displayed below Add to Cart on product pages and in the checkout</p>
+    <div class="trust-row">
+      <div class="trust-badge">
+        <div class="trust-icon" style="background:rgba(45,139,71,0.1);">🚚</div>
+        <div>
+          <div class="trust-title">Free Delivery</div>
+          <div class="trust-desc">On orders over EGP 300</div>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon" style="background:rgba(196,30,36,0.08);">💳</div>
+        <div>
+          <div class="trust-title">Cash on Delivery</div>
+          <div class="trust-desc">Pay when your order arrives</div>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon" style="background:rgba(197,153,58,0.1);">🔒</div>
+        <div>
+          <div class="trust-title">Secure Payment</div>
+          <div class="trust-desc">100% safe checkout</div>
+        </div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon" style="background:rgba(27,58,123,0.08);">↩️</div>
+        <div>
+          <div class="trust-title">Easy Returns</div>
+          <div class="trust-desc">7-day return policy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Payment Methods -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Payment Methods</h2>
+    <p class="section-subtitle">Checkout payment selection component — all methods required for Egypt market</p>
+    <div class="payment-grid">
+      <div class="payment-option selected" onclick="selectPayment(this)">
+        <div class="payment-radio"></div>
+        <div class="payment-icon">💵</div>
+        <div>
+          <div class="payment-label">Cash on Delivery</div>
+          <div class="payment-desc">الدفع عند الاستلام · COD fee: EGP 10</div>
+        </div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this)">
+        <div class="payment-radio"></div>
+        <div class="payment-icon">💳</div>
+        <div>
+          <div class="payment-label">Card on Delivery</div>
+          <div class="payment-desc">كارت عند الاستلام · Visa / Mastercard</div>
+        </div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this)">
+        <div class="payment-radio"></div>
+        <div class="payment-icon">🔐</div>
+        <div>
+          <div class="payment-label">Pay Online</div>
+          <div class="payment-desc">ادفع أونلاين · Secure via Paymob</div>
+        </div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this)">
+        <div class="payment-radio"></div>
+        <div class="payment-icon">📱</div>
+        <div>
+          <div class="payment-label">Mobile Wallet</div>
+          <div class="payment-desc">محفظة إلكترونية · Vodafone Cash / Orange</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Spacing & Radius -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Spacing & Radius</h2>
+    <p class="section-subtitle">Consistent spatial system for the entire platform</p>
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <h4>Border Radius</h4>
+        <code>8px</code> — Buttons, inputs<br>
+        <code>12px</code> — Cards, modals<br>
+        <code>14px</code> — Product cards<br>
+        <code>50%</code> — Avatars, badges
+      </div>
+      <div class="spacing-item">
+        <h4>Shadows</h4>
+        <code>sm</code> — <span style="font-size:12px;">0 1px 3px rgba(0,0,0,0.06)</span><br>
+        <code>md</code> — <span style="font-size:12px;">0 4px 12px rgba(0,0,0,0.08)</span><br>
+        <code>lg</code> — <span style="font-size:12px;">0 12px 32px rgba(0,0,0,0.1)</span>
+      </div>
+      <div class="spacing-item">
+        <h4>Spacing Scale</h4>
+        <code>4px</code> — Micro gaps<br>
+        <code>8px</code> — Tight<br>
+        <code>16px</code> — Default<br>
+        <code>24px</code> — Sections<br>
+        <code>48px</code> — Section padding<br>
+        <code>64px</code> — Major sections
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer note -->
+<div style="text-align:center;padding:48px 24px;color:var(--slate);font-size:13px;">
+  <p>Bostany E-Commerce Design System · Prepared by Vector9</p>
+  <p style="margin-top:4px;font-size:11px;">Use this reference alongside the Master Plan document for v0/Stitch design and Claude Code development</p>
+</div>
+
+<!-- Toast -->
+<div class="copied-toast" id="toast">Copied!</div>
+
+<script>
+function copyColor(hex) {
+  navigator.clipboard.writeText(hex).then(() => {
+    const toast = document.getElementById('toast');
+    toast.textContent = `Copied ${hex}`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1500);
+  });
+}
+
+function selectPayment(el) {
+  document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>
